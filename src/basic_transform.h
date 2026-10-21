@@ -10,12 +10,18 @@ struct BasicTransform {
     // TODO: Determine if possible in general, else provide counterexample:
     // compose(f, g) is equivalent to first applying g, then applying f.
     static BasicTransform compose(const BasicTransform& f, const BasicTransform& g) {
-        return {};
+        return {
+            {f.scale.x * g.scale.x, f.scale.y * g.scale.y},
+            {g.translation * f.scale + f.translation}
+        };
     };
 
     // TODO: Determine if possible in general, else provide counterexample:
     static BasicTransform inverse(const BasicTransform& f) {
-        return {};
+        return {
+            {1.f / f.scale.x, 1.f / f.scale.y},
+            {f.translation / f.scale * -1.f}
+        };
     };
 
     constexpr BasicTransform(const sf::Vector2f& scale = {1.f, 1.f},

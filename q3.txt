@@ -1,0 +1,3 @@
+1. The best candidate to move out would be the transform, since multiple other things in a game also need a transform for movement and shouldn't also need to redefine the field separately.
+
+2. We need to enforce an explicit draw order of the sprites, e.g. assigning a z-index as seen in css on websites. Without this order, colouring becomes arbitrary when values in the engine ultimately shuffle around during a games lifetime.
